@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ingresarme como alumno - Valsy Studio</title>
+  <style>
+    body { margin:0; font-family:"Inter",Arial,sans-serif; background: linear-gradient(180deg, #fff9fb 0%, #ffeef5 100%); color:#332435; }
+    .page{width:min(720px,92%);margin:0 auto;padding:18px 0 34px;}
+    .card{background:#fff;border-radius:16px;border:1px solid #ffdde8; box-shadow:0 12px 26px rgba(115,24,55,0.12); padding:18px;}
+    h1{margin:0 0 8px; color:#8f2f4f;}
+    p{margin:0 0 16px; color:#4f3a4c;}
+    form{display:grid; gap:10px;}
+    label{font-weight:600; color:#5d3344; font-size:.9rem;}
+    input, textarea{width:100%;border:1px solid #f0c5d4; border-radius:10px; padding:10px; font-size:.95rem;}
+    textarea{height:90px; resize:vertical;}
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100;}
+    .back-links { display:flex; gap:10px; margin-top:14px; flex-wrap: wrap; }
+    .btn{background:#d54070;color:#fff;border:none;border-radius:999px;padding:10px 14px;font-weight:700;cursor:pointer;box-shadow:0 6px 14px rgba(213,64,112,0.35);transition:.2s ease;width:100%;}
+    .btn:hover{background:#b92f58;}
+    .message{background:#eaf7ee; border:1px solid #b8e3c3; color:#276a3a; border-radius:10px; padding:10px; margin-top:10px; display:none;}
+    .back{display:inline-block;margin-top:14px;text-decoration:none;color:#8f2f4f;font-weight:700;}
+    @media (max-width:700px){
+      .page{width:94%;padding:12px 0 25px;}
+      .card{padding:14px;}
+      .row{grid-template-columns:1fr;}
+      h1{text-align:center;}
+      p{text-align:center;}
+      .back-links{flex-direction:column;}
+      .back{width:100%;text-align:center;margin-top:10px;display:block;}
+    }
+    @media (max-width:550px){
+      .page{padding:10px 0 20px;}
+      .card{padding:12px;}
+    }
+  </style>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+  <div class="page">
+    <div class="card">
+      <h1>Ingresarme como alumno</h1>
+      <p>Completá tus datos y en breve te confirmo la disponibilidad de clases.</p>
+      <form id="alumnoForm">
+        <div class="row"><div><label for="nombre">Nombre</label><input type="text" id="nombre" name="nombre" required></div><div><label for="apellido">Apellido</label><input type="text" id="apellido" name="apellido" required></div></div>
+        <div class="row"><div><label for="email">Email</label><input type="email" id="email" name="email" required></div><div><label for="edad">Edad</label><input type="number" id="edad" name="edad" min="10" max="120" required></div></div>
+        <div class="row"><div><label for="peso">Peso (kg)</label><input type="number" id="peso" name="peso" min="20" max="300" step="0.1" required></div><div><label for="telefono">WhatsApp (opcional)</label><input type="text" id="telefono" name="telefono" placeholder="+54 9 ..."></div></div>
+        <div><label for="patologias">Patologías / lesiones / condiciones</label><textarea id="patologias" name="patologias" placeholder="Ej: lumbalgia, escoliosis, etc."></textarea></div>
+        <button type="submit" class="btn">Enviar inscripción</button>
+      </form>
+      <div class="message" id="mensajeExito">Ingreso exitoso, queda pendiente de confirmación.</div>
+      <div class="back-links">
+        <a class="back" href="clases.html" style="margin-top: 0;">Ver clases y valores →</a>
+        <a class="back" href="index.html" style="margin-top: 0;">← Volver al inicio</a>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    emailjs.init("Ah4u4Y8b5VtmUXfN1");
+
+const form = document.getElementById("alumnoForm");
+const mensaje = document.getElementById("mensajeExito");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  emailjs.sendForm("service_758747h", "template_otq2fqg", this)
+    .then(() => {
+      mensaje.style.display = "block";
+      mensaje.innerText = "Ingreso exitoso, en breve te confirmamos disponibilidad.";
+      form.reset();
+    })
+    .catch((error) => {
+  console.log("ERROR DETALLE:", error);
+  mensaje.style.display = "block";
+  mensaje.innerText = "Error al enviar el formulario.";
+});
+});
+  </script>
+</body>
+</html>

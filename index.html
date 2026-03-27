@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valsy Studio - Pilates a domicilio</title>
+  <style>
+    :root {
+      --bg: #fff8f8;
+      --card: #fff;
+      --text: #2f1f2f;
+      --primary: #d45b70;
+      --secondary: #f7c9d7;
+      --muted: #8b7280;
+      --shadow: 0 12px 35px rgba(212, 91, 112, 0.14);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #fff9fb 0%, #ffeef5 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .page { width: min(1100px, 94%); margin: 0 auto; padding: 16px 0 40px; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; flex-wrap: wrap; gap: 10px; }
+    .logo { font-weight: 800; color: #9f2e48; letter-spacing: 0.8px; }
+    nav { display: flex; gap: 12px; font-size: 0.95rem; }
+    nav a { color: #5a3240; text-decoration: none; font-weight: 600; padding: 8px 10px; border-radius: 999px; transition: 0.15s ease; }
+    nav a:hover { background: #fff0f4; color: #b53255; }
+    .hero{
+      margin-top: 12px;
+      background: linear-gradient(130deg, #fff, #ffeef3 60%, #ffd5e0 100%);
+      border: 1px solid #ffd4e4;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 20px;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero h1 { margin: 0 0 12px; font-size: clamp(1.55rem, 4vw, 2.55rem); color: #7f203b; }
+    .hero p { margin: 0 0 18px; color: #4d3344; font-size: 1.03rem; }
+    .btn { background: #d65f77; color: #fff; border: none; border-radius: 999px; padding: 10px 18px; font-weight: 700; cursor: pointer; box-shadow: 0 10px 24px rgba(214, 95, 119, 0.28); transition: transform .2s ease, background .2s ease; text-decoration:none; display:inline-block; }
+    .btn:hover { transform: translateY(-2px); background: #c84d6a; }
+    .hero-img { justify-self: end; }
+    .hero-img img {
+      width: min(100%, 280px);
+      border-radius: 15px;
+      border: 3px solid #ffd9e5;
+      box-shadow: 0 15px 30px rgba(180, 60, 95, 0.2);
+      transition: transform .2s ease, filter .2s ease;
+      cursor: zoom-in;
+      display: block;
+    }
+    .hero-img img:hover {
+      transform: scale(1.05);
+      filter: saturate(1.08);
+    }
+    .img-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.72);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 18px;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, visibility .18s ease;
+      z-index: 1000;
+    }
+    .img-lightbox.visible {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .img-lightbox img {
+      max-width: 95%;
+      max-height: 92%;
+      border-radius: 14px;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.18), 0 20px 50px rgba(0,0,0,0.35);
+    }
+    .img-lightbox .close-text {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      font-size: 0.9rem;
+      background: rgba(0,0,0,0.45);
+      border-radius: 999px;
+      padding: 6px 10px;
+      border: 1px solid rgba(255,255,255,0.22);
+      cursor: pointer;
+      user-select: none;
+    }
+    .section { margin-top: 22px; background: var(--card); border-radius: var(--radius); border: 1px solid #ffe2ec; box-shadow: var(--shadow); padding: 20px; }
+    .section h2 { margin-top: 0; color: #8f2f48; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 14px; }
+    .card {
+      background: #fff;
+      border: 1px solid #ffdbe7;
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 5px 19px rgba(0,0,0,0.06);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
+    .card h3 { margin: 0 0 8px; color: #a4355d; }
+    .card p { margin: 0; color: #544052; }
+    .cta { margin-top: 18px; display: inline-flex; align-items: center; gap: 10px; background: #ffdee9; border-radius: 12px; padding: 12px 14px; border: 1px solid #ffb4d0; color: #4f2840; font-weight: 600; }
+    .features { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
+    .features li { display: flex; align-items: center; gap: 8px; }
+    .features span { width: 8px; height: 8px; border-radius: 50%; background: #d95c78; display: inline-block; margin-top: 3px; }
+    .scroll-reveal { opacity: 0; transform: translateY(20px); animation: reveal 0.8s forwards; }
+    .reveal-delay-1 { animation-delay: 0.14s; }
+    .reveal-delay-2 { animation-delay: 0.2s; }
+    .reveal-delay-3 { animation-delay: 0.26s; }
+    @keyframes reveal { to { opacity: 1; transform: translateY(0);} }
+    footer { margin-top: 22px; text-align: center; font-size: 0.9rem; color: #6f536a; }
+    a.btn-secondary { background: #fff; color: #b03558; border: 1px solid #f0a8c1; }
+    @media (max-width: 860px) {      .page { width: 94%; padding: 12px 0 30px; }
+      header { flex-direction: column; align-items: center; text-align: center; }
+      .logo { font-size: 1.1rem; }
+      nav { flex-direction: column; gap: 8px; width: 100%; }
+      nav a { width: 100%; text-align: center; display: block; }
+      .hero { grid-template-columns: 1fr; gap: 12px; padding: 18px; }
+      .hero h1 { font-size: clamp(1.3rem, 3vw, 1.8rem); text-align: center; }
+      .hero p { text-align: center; }
+      .hero-img { justify-self: center; }
+      .btn { width: 100%; text-align: center; padding: 12px 14px; }
+    }
+    @media (max-width: 550px) {      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-img { justify-self: center; }
+      nav { flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo">Valsy Studio</div>
+      <nav>
+        <a href="#servicios">Servicios</a>
+        <a href="#metodo">Método</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <section class="hero scroll-reveal">
+      <div>
+        <p style="font-size:.86rem;color:#9f2f50;font-weight:700;margin:0 0 8px;">Pilates a domicilio | Profesional certificada</p>
+        <h1>Movimiento consciente para tu cuerpo y energía</h1>
+        <p>Clases personalizadas de pilates con enfoque en postura, fuerza, flexibilidad y bienestar. Tu entrenamiento adaptado a tu cuerpo y ritmo.</p>
+        <a class="btn" href="clases.html">Conocer clases y valores</a>
+      </div>
+      <div class="hero-img"><img src="Valsy Studio.jpeg" alt="Clases de Pilates Valsy Studio" /></div>
+    </section>
+
+    <section class="section scroll-reveal reveal-delay-1" id="servicios">
+      <h2>¿Qué ofrezco?</h2>
+      <p>Sé cómo guiar tu cuerpo con seguridad y eficacia, trabajando cada clase con atención personalizada y cariño profesional.</p>
+      <ul class="features">
+        <li><span></span>Clases individuales y en pareja</li>
+        <li><span></span>Entrenamientos de rehabilitación y postura</li>
+        <li><span></span>Sesiones para todas las edades y niveles</li>
+        <li><span></span>Zona a domicilio con equipamiento básico</li>
+      </ul>
+    </section>
+
+    <section class="section scroll-reveal reveal-delay-2" id="metodo">
+      <h2>Método y valores</h2>
+      <div class="cards">
+        <article class="card"><h3>Atención personalizada</h3><p>Evaluación inicial, plan de clases y ajustes constantes para que avances con seguridad.</p></article>
+        <article class="card"><h3>Respeto por tu cuerpo</h3><p>Trabajamos con condiciones previas y lesiones, adaptando cada ejercicio a tus necesidades.</p></article>
+        <article class="card"><h3>Progreso real</h3><p>Con foco en técnica y respiración, notarás más fuerza, movilidad y comodidad en tus actividades diarias.</p></article>
+      </div>
+    </section>
+
+    <section class="section scroll-reveal reveal-delay-3" id="contacto">
+      <h2>Contacto rápido</h2>
+      <p class="cta">📲 WhatsApp: +54 9 XX XXXX XXXX  •  ✉️ Email: ejemplo@email.com</p>
+      <p>Para reservar tu primera clase, pedí tu ingreso como alumno y te confirmo disponibilidad.</p>
+      <a class="btn" href="ingreso.html">Ingresarme como alumno</a>
+    </section>
+
+    <footer>© 2026 Valsy Studio • Pilates a domicilio - Tu espacio wellness.</footer>
+  </div>
+  <div class="img-lightbox" id="imgLightbox">
+    <span class="close-text" id="closeLightbox">Cerrar ✕</span>
+    <img id="lightboxImage" src="" alt="Foto aumentada" />
+  </div>
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+    const heroImg = document.querySelector('.hero-img img');
+    const lightbox = document.getElementById('imgLightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const closeLightbox = document.getElementById('closeLightbox');
+
+    heroImg.addEventListener('click', () => {
+      lightboxImage.src = heroImg.src;
+      lightboxImage.alt = heroImg.alt || 'Imagen grande';
+      lightbox.classList.add('visible');
+    });
+
+    const hideLightbox = () => lightbox.classList.remove('visible');
+    closeLightbox.addEventListener('click', hideLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target === lightboxImage) {
+        hideLightbox();
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') hideLightbox();
+    });
+  </script>
+  
+</body>
+</html>
