@@ -219,6 +219,9 @@ a.btn-secondary:hover {
   box-shadow: 0 15px 30px rgba(180, 60, 95, 0.2);
   transition: transform .2s ease, filter .2s ease;
   cursor: zoom-in;
+  display: block;
+  margin: 0 auto;
+
 }
 
 .hero-img img:hover {
