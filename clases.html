@@ -1,66 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clases Valsy Studio</title>
-  <style>
-    :root {
-      --bg: #fff7f8;
-      --card: #ffffff;
-      --primary: #d44d6d;
-      --secondary: #f5cee0;
-      --text: #3b2433;
-      --shadow: 0 12px 24px rgba(127, 48, 72, 0.14);
-      --radius: 16px;
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: "Inter", "Segoe UI", Arial, sans-serif; background: linear-gradient(180deg, #fffafc 0%, #ffeef5 100%); color: var(--text); }
-    .page { width: min(980px, 92%); margin: 0 auto; padding: 14px 0 26px; }
-    .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .logo { font-size: 1.25rem; font-weight: 800; color: #9b2c4a; }
-    .hero { background: #fff; border-radius: var(--radius); border: 1px solid #ffdce8; box-shadow: var(--shadow); padding: 18px; margin-bottom: 16px; }
-    .hero h1 { margin: 0; font-size: clamp(1.3rem, 4vw, 2rem); color: #751f3e; }
-    .hero p { margin: 10px 0 0; color: #4a3445; }
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 12px; margin-top: 10px; }
-    .card { background: #fff; border: 1px solid #ffdbe7; border-radius: 12px; padding: 12px; box-shadow: 0 8px 18px rgba(0,0,0,0.06); }
-    .card h3 { margin: 0 0 6px; color: #a72d55; }
-    .card p { margin: 0; font-size: 0.95rem; color: #564253; }
-    .valor { font-size: 1rem; font-weight: 700; color: #7b2d4f; margin-top: 8px; }
-    .info { background: #fff; border-radius: 14px; border: 1px solid #ffdeea; padding: 14px; margin-top: 16px; }
-    .info h2 { margin-top: 0; color: #8e2f4f; }
-    .list { margin: 10px 0 0 16px; color: #4b3342; }
-    .link-back { display: inline-block; margin-top: 16px; text-decoration: none; color: #fff; background: #d84d73; padding: 10px 16px; border-radius: 999px; font-weight: 700; transition: 0.2s ease; }
-    .link-back:hover { background: #b5385d; }
-    .contact-info { margin: 6px 0; color: #4e3546; }
-    @media (max-width: 760px) {
-      .page { width: 94%; padding: 12px 0 25px; }
-      .top { flex-direction: column; align-items: center; gap: 10px; width: 100%; text-align: center; }
-      .logo { font-size: 1.1rem; }
-      .top > div:first-child { width: 100%; }
-      .top > div:last-child { width: 100%; flex-direction: column; }
-      .top a { width: 100%; text-align: center; }
-      .hero { padding: 16px; }
-      .hero h1 { font-size: clamp(1.2rem, 3vw, 1.7rem); text-align: center; }
-      .hero p { text-align: center; }
-      .link-back { width: 100%; text-align: center; }
-      .info { padding: 12px; }
-      .info p { text-align: center; }
-      .cards { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 550px) {
-      .page { padding: 10px 0 20px; }
-      .top { gap: 8px; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="clases-page">
   <div class="page">
     <div class="top">
       <div class="logo">Valsy Studio • Clases</div>
-      <div style="display: flex; gap: 10px;">
-        <a class="link-back" href="ingreso.html" style="background: #9b4f6b;">Ingresarme como alumno</a>
-        <a class="link-back" href="index.html">← Inicio</a>
+      <div class="top-actions">
+        <a class="btn" href="index.html">← Inicio</a>
       </div>
     </div>
 
@@ -76,7 +27,13 @@
         <article class="card"><h3>Pack 4 clases</h3><p>Ideal para avanzar con constancia en un mes.</p><div class="valor">$60.000</div></article>
         <article class="card"><h3>Pack 8 clases</h3><p>Plan de entrenamiento semanal para mejores resultados.</p><div class="valor">$120.000</div></article>
       </div>
-      <p style="margin-top:10px;color:#61455f;">*Valores ejemplo, pueden variar según zona de traslado y necesidades.</p>
+      <p class="note">*Valores ejemplo, pueden variar según zona de traslado y necesidades.</p>
+    </section>
+
+     <section class="info centered">
+      <h2>Listo para comenzar?</h2>
+      <p>Ingresate como alumno para que podamos coordinar tu primera clase.</p>
+      <a class="btn" href="ingreso.html">Ingresarme como alumno</a>
     </section>
 
     <section class="info">
@@ -88,61 +45,66 @@
       <p>Envía mensaje para consultar disponibilidad de horarios y días.</p>
     </section>
 
-    <section class="info" id="turnoReserva"> <h2>Reserva tu turno</h2> 
-      <p>Elegí un día y un horario, y te confirmo enseguida si está disponible. Si ya fue reservado, se mostrará el aviso correspondiente.</p> 
-      <form id="turnoForm"> 
-        <div style="display:grid; 
-        grid-template-columns:1fr 1fr; 
-        gap:12px;
-        margin-bottom:12px;"> 
-          <div> 
-            <label for="fechaTurno" 
-            style="font-weight:600; 
-            color:#5d3344;">Fecha</label>
-             <input required type="date" 
-             id="fechaTurno" 
-             name="fechaTurno" 
-             style="width:100%; border:1px solid #f0c5d4; border-radius:10px; padding:10px;" /> </div> 
-             <div> <label for="horarioTurno" style="font-weight:600; color:#5d3344;">Horario</label> 
-            <select required id="horarioTurno" name="horarioTurno" style="width:100%; border:1px solid #f0c5d4; border-radius:10px; padding:10px;"> 
-            <option value="">Elegí horario</option> 
-            <option>08:00</option> 
-            <option>09:00</option> 
-            <option>10:00</option> 
-            <option>11:00</option> 
-            <option>12:00</option> 
-            <option>14:00</option> 
-            <option>15:00</option> 
-            <option>16:00</option> 
-            <option>17:00</option> 
-            <option>18:00</option> 
-            <option>19:00</option> 
-            <option>20:00</option> 
-          </select> </div> </div> 
-          <div id="avisoNoDisponible" 
-          style="display:none; 
-          background:#fce7e6; 
-          border:1px solid #f5a5a2; 
-          padding:10px; 
-          border-radius:10px; 
-          color:#c33a34; 
-          font-weight:700; 
-          margin-bottom:12px;">Este turno no está disponible</div> 
-          <div id="datosCliente" style="display:none;"> 
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;"> 
-              <div>
-                <label style="font-weight:600; color:#5d3344;">Nombre</label>
-                <input required type="text"  id="nombreTurno" style="width:100%; border:1px solid #f0c5d4; border-radius:10px; padding:10px;" />
-              </div> <div><label style="font-weight:600; color:#5d3344;">Apellido</label>
-                <input required type="text" id="apellidoTurno" style="width:100%; border:1px solid #f0c5d4; border-radius:10px; padding:10px;" /></div> </div> 
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;"> <div>
-                  <label style="font-weight:600; color:#5d3344;">Email</label>
-                  <input required type="email" id="emailTurno" style="width:100%; border:1px solid #f0c5d4; border-radius:10px; padding:10px;" /></div> 
-                  <div><label style="font-weight:600; color:#5d3344;">WhatsApp</label><input type="tel" id="telefonoTurno" style="width:100%; border:1px solid #f0c5d4; border-radius:10px; padding:10px;" placeholder="+54 9 ..." /></div> </div> 
-                  <div style="margin-bottom:12px;"><label style="font-weight:600; color:#5d3344;">Observaciones (opcional)</label><textarea id="observacionesTurno" style="width:100%; border:1px solid #f0c5d4; border-radius:10px; padding:10px; min-height:80px;"></textarea></div> 
-                  <button type="submit" style="width:100%; background:#d84d73; color:#fff; border:none; border-radius:999px; padding:10px; font-weight:700; cursor:pointer;">Confirmar reserva</button> </div> </form> 
-                  <div id="mensajeExito" style="display:none; background:#eaf7ee; border:1px solid #b8e3c3; color:#276a3a; border-radius:10px; padding:10px; margin-top:10px; font-weight:700;">¡Turno reservado! Se envió confirmación al email.</div> <div id="mensajeError" style="display:none; background:#fce7e6; border:1px solid #f5a5a2; color:#c33a34; border-radius:10px; padding:10px; margin-top:10px; font-weight:700;"></div> 
-                </section>
+    <section class="info" id="turnoReserva">
+      <h2>Reserva tu turno</h2>
+      <p>Elegí un día y un horario, y te confirmo enseguida si está disponible. Si ya fue reservado, se mostrará el aviso correspondiente.</p>
+      <form id="turnoForm">
+        <div class="form-grid">
+          <div class="field-group">
+            <label for="fechaTurno" class="field-label">Fecha</label>
+            <input required type="date" id="fechaTurno" name="fechaTurno" />
+          </div>
+          <div class="field-group">
+            <label for="horarioTurno" class="field-label">Horario</label>
+            <select required id="horarioTurno" name="horarioTurno">
+              <option value="">Elegí horario</option>
+              <option>08:00</option>
+              <option>09:00</option>
+              <option>10:00</option>
+              <option>11:00</option>
+              <option>12:00</option>
+              <option>14:00</option>
+              <option>15:00</option>
+              <option>16:00</option>
+              <option>17:00</option>
+              <option>18:00</option>
+              <option>19:00</option>
+              <option>20:00</option>
+            </select>
+          </div>
+        </div>
+        <div id="avisoNoDisponible" class="message message-error">Este turno no está disponible</div>
+        <div id="datosCliente" class="hidden">
+          <div class="form-grid">
+            <div class="field-group">
+              <label for="nombreTurno" class="field-label">Nombre</label>
+              <input required type="text" id="nombreTurno" />
+            </div>
+            <div class="field-group">
+              <label for="apellidoTurno" class="field-label">Apellido</label>
+              <input required type="text" id="apellidoTurno" />
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field-group">
+              <label for="emailTurno" class="field-label">Email</label>
+              <input required type="email" id="emailTurno" />
+            </div>
+            <div class="field-group">
+              <label for="telefonoTurno" class="field-label">WhatsApp</label>
+              <input type="tel" id="telefonoTurno" placeholder="+54 9 ..." />
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="observacionesTurno" class="field-label">Observaciones (opcional)</label>
+            <textarea id="observacionesTurno"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary-action">Confirmar reserva</button>
+        </div>
+      </form>
+      <div id="mensajeExito" class="message message-success">¡Turno reservado! Se envió confirmación al email.</div>
+      <div id="mensajeError" class="message message-error"></div>
+    </section>
 
    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
@@ -165,7 +127,7 @@
   const telefonoTurno = document.getElementById("telefonoTurno");
   const observacionesTurno = document.getElementById("observacionesTurno");
 
-  // 📦 Base de datos (localStorage)
+  // 📦 localStorage
   function obtenerTurnos() {
     return JSON.parse(localStorage.getItem("turnos")) || [];
   }
@@ -174,22 +136,55 @@
     localStorage.setItem("turnos", JSON.stringify(turnos));
   }
 
-  // ❌ Mostrar error
+  // ❌ Error
   function mostrarError(texto) {
     mensajeError.style.display = "block";
     mensajeError.innerText = texto;
     mensajeExito.style.display = "none";
   }
 
-  // 🔍 Verificar disponibilidad
+  // 🧠 Bloquear horarios ocupados
+  function bloquearHorarios() {
+    const fecha = fechaTurno.value;
+    const turnos = obtenerTurnos();
+
+    // Recorre todas las opciones del select
+    for (let option of horarioTurno.options) {
+      option.disabled = false;
+    }
+
+    if (!fecha) return;
+
+    turnos.forEach(t => {
+      if (t.fecha === fecha) {
+        for (let option of horarioTurno.options) {
+          if (option.value === t.horario) {
+            option.disabled = true;
+          }
+        }
+      }
+    });
+  }
+
+  // 🔍 Validación completa
   function verificarDisponibilidad() {
     const fecha = fechaTurno.value;
     const horario = horarioTurno.value;
 
     if (!fecha || !horario) return false;
 
-    // ❌ No domingos
-    const dia = new Date(fecha + "T00:00:00").getDay();
+    const hoy = new Date();
+    const fechaSeleccionada = new Date(fecha + "T00:00:00");
+
+    // ❌ Fecha pasada
+    if (fechaSeleccionada < new Date(hoy.setHours(0,0,0,0))) {
+      mostrarError("No podés seleccionar una fecha pasada");
+      datosCliente.style.display = "none";
+      return false;
+    }
+
+    // ❌ Domingo
+    const dia = fechaSeleccionada.getDay();
     if (dia === 0) {
       mostrarError("Los domingos no hay turnos");
       datosCliente.style.display = "none";
@@ -199,8 +194,7 @@
     const turnos = obtenerTurnos();
 
     const ocupado = turnos.some(t =>
-      String(t.fecha) === String(fecha) &&
-      String(t.horario) === String(horario)
+      t.fecha === fecha && t.horario === horario
     );
 
     if (ocupado) {
@@ -217,10 +211,14 @@
   }
 
   // Eventos
-  fechaTurno.addEventListener("change", verificarDisponibilidad);
+  fechaTurno.addEventListener("change", () => {
+    bloquearHorarios();
+    verificarDisponibilidad();
+  });
+
   horarioTurno.addEventListener("change", verificarDisponibilidad);
 
-  // 📝 Reservar turno
+  // 📝 Enviar turno
   turnoForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -244,11 +242,8 @@
       observaciones: observacionesTurno.value.trim()
     };
 
-    let turnos = obtenerTurnos();
-    turnos.push(nuevoTurno);
-    guardarTurnos(turnos);
-
     try {
+      // 📩 Enviar mail
       await emailjs.send("service_a57ywx8", "template_34sw1c9", {
         fecha: fecha,
         horario: horario,
@@ -257,12 +252,20 @@
         email: nuevoTurno.email
       });
 
+      // 💾 Guardar SOLO si el mail salió bien
+      let turnos = obtenerTurnos();
+      turnos.push(nuevoTurno);
+      guardarTurnos(turnos);
+
       mensajeExito.style.display = "block";
       mensajeError.style.display = "none";
       datosCliente.style.display = "none";
       avisoNoDisponible.style.display = "none";
 
       turnoForm.reset();
+
+      // 🔄 refrescar horarios
+      bloquearHorarios();
 
     } catch (error) {
       console.error(error);
@@ -271,21 +274,6 @@
   });
 </script>
 
-  <section class="info">
-      <h2>¿Para quién es ideal?</h2>
-      <ul class="list">
-        <li>Personas con dolor de espalda o postura</li>
-        <li>Adultos mayores que quieren moverse con seguridad</li>
-        <li>Quienes buscan complemento de actividad física</li>
-        <li>Principiantes que desean aprender técnica desde cero</li>
-      </ul>
-    </section>
-
-    <section class="info" style="text-align: center;">
-      <h2>Listo para comenzar?</h2>
-      <p>Ingresate como alumno para que podamos coordinar tu primera clase.</p>
-      <a class="link-back" href="ingreso.html" style="margin-top: 0; font-size: 1.05rem; padding: 12px 20px; margin-left: auto; margin-right: auto;">Inscribirse ahora</a>
-    </section>
   </div>
 </body>
 </html>
