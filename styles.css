@@ -527,7 +527,8 @@ form {
   .hero { grid-template-columns: 1fr; gap: 16px; padding: 20px; text-align: center; }
   .hero h1 { font-size: clamp(1.6rem, 5vw, 2rem); }
   .hero p { text-align: center; font-size: 1rem; }
-  .hero-img { justify-self: center; }
+  .hero-img { justify-self: center; width: 100%; display: flex; justify-content: center; }
+  .hero-img img { margin: 0 auto; }
   .btn,
   a.btn,
   .btn-primary-action,
