@@ -19,7 +19,7 @@ The system validates availability and prevents double bookings.
 - Appointment booking
 
 # # 📷 Preview
-![Pilates Web - Valsy Studio](assets/Lightshot/Screenshot_Pilates.png)
+![Pilates Web - Valsy Studio](Documentos/Lightshot/Screenshot_Pilates.png)
 
 # # ▶️ How to use
 1. Open the `index.html` file
